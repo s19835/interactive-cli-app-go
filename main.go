@@ -1,11 +1,11 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-
-*/
 package main
 
-import "github.com/s19835/interactive-cli-app-go/cmd"
+import (
+	"github.com/s19835/interactive-cli-app-go/cmd"
+	"github.com/s19835/interactive-cli-app-go/data"
+)
 
 func main() {
+	data.OpenDatabase()
 	cmd.Execute()
 }
