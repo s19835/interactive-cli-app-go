@@ -59,6 +59,36 @@ func promptGetInput(pc promptContent) string {
 	return result
 }
 
+func promptGetSelect(pc promptContent) string {
+	items := []string{"animal", "food", "person", "object"}
+	index := -1
+
+	var err error
+	var result string
+
+	for index < 0 {
+		prompt := promptui.SelectWithAdd{
+			Label:    pc.label,
+			Items:    items,
+			AddLabel: "Other",
+		}
+
+		index, result, err = prompt.Run()
+
+		if index < 0 {
+			items = append(items, result)
+		}
+	}
+
+	if err != nil {
+		fmt.Printf("Prompt failed %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("Input: %s\n", result)
+	return result
+}
+
 func createNewNote() {
 	wordPrmptContent := promptContent{
 		"Please provide a word",
@@ -73,4 +103,11 @@ func createNewNote() {
 	}
 
 	definition := promptGetInput(defPromptContent)
+
+	catgPromptContent := promptContent{
+		"Please provide a category",
+		fmt.Sprintf("What category does %s blong to?", word),
+	}
+
+	category := promptGetInput(catgPromptContent)
 }
