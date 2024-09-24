@@ -23,7 +23,7 @@ func OpenDatabase() error {
 func CreateTable() {
 	createTableSql := `CREATE TABLE IF NOT EXISTS studybuddy(
 		"idNote" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-		"world" TEXT,
+		"word" TEXT,
 		"definition" TEXT,
 		"category" TEXT
 	);`
