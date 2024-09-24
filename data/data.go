@@ -38,7 +38,7 @@ func CreateTable() {
 }
 
 func InsertNote(word string, definition string, category string) {
-	insertNoteSQL := `INSERT INTO studybuddy {word, definition, category}
+	insertNoteSQL := `INSERT INTO studybuddy (word, definition, category)
 	VALUES (?, ?, ?)`
 
 	statment, err := db.Prepare(insertNoteSQL)
