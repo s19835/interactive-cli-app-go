@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/s19835/interactive-cli-app-go/data"
 	"github.com/spf13/cobra"
 )
 
@@ -13,6 +14,7 @@ var listCmd = &cobra.Command{
 	Long:  `See all data that you have added to your table in formated view`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("list called")
+		data.DisplayAllNotes()
 	},
 }
 

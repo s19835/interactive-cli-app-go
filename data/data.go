@@ -21,14 +21,14 @@ func OpenDatabase() error {
 }
 
 func CreateTable() {
-	createTableSql := `CREATE TABLE IF NOT EXISTS studybuddy(
+	createTableSQL := `CREATE TABLE IF NOT EXISTS studybuddy (
 		"idNote" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		"word" TEXT,
 		"definition" TEXT,
 		"category" TEXT
-	);`
+	  );`
 
-	statement, err := db.Prepare(createTableSql)
+	statement, err := db.Prepare(createTableSQL)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -38,8 +38,7 @@ func CreateTable() {
 }
 
 func InsertNote(word string, definition string, category string) {
-	insertNoteSQL := `INSERT INTO studybuddy (word, definition, category)
-	VALUES (?, ?, ?)`
+	insertNoteSQL := `INSERT INTO studybuddy(word, definition, category) VALUES (?, ?, ?)`
 
 	statment, err := db.Prepare(insertNoteSQL)
 	if err != nil {
