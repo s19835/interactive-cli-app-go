@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/manifoldco/promptui"
+	"github.com/s19835/interactive-cli-app-go/data"
 	"github.com/spf13/cobra"
 )
 
@@ -16,6 +17,7 @@ var newCmd = &cobra.Command{
 	Long:  `Create a new note for studybuddy reviewing process`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("new called")
+		createNewNote()
 	},
 }
 
@@ -109,5 +111,7 @@ func createNewNote() {
 		fmt.Sprintf("What category does %s blong to?", word),
 	}
 
-	category := promptGetInput(catgPromptContent)
+	category := promptGetSelect(catgPromptContent)
+
+	data.InsertNote(word, definition, category)
 }
