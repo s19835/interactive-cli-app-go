@@ -53,3 +53,23 @@ func InsertNote(word string, definition string, category string) {
 
 	log.Println("Insert study note successfully")
 }
+
+func DisplayAllNotes() {
+	row, err := db.Query("SELECT * FROM sudybuddy ORDER BY word")
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	defer row.Close()
+
+	for row.Next() {
+		var idNote int
+		var word string
+		var definition string
+		var category string
+
+		row.Scan(&idNote, &word, &definition, &category)
+		log.Println("[", category, "] ", word, "-", definition)
+	}
+}
