@@ -42,12 +42,12 @@ func InsertNote(word string, definition string, category string) {
 
 	statment, err := db.Prepare(insertNoteSQL)
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalln("Failed to prepare statement for insert:", err) // error occur hear,
 	}
 
 	_, err = statment.Exec(word, definition, category)
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalln("Failed to execute insert:", err)
 	}
 
 	log.Println("Insert study note successfully")
